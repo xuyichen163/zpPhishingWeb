@@ -1,0 +1,102 @@
+<html>
+<head>
+  <title>Phishing website deteciton prototype system of the MFPD approach</title>
+
+</head>
+<body>
+  <table border="0" align="center" cellspacing="20" width="500">
+    <tr>
+     <!-- <td><img src="{{ url_for('static', filename='seu.bmp') }}" width="65" height="65"/></td> -->
+      <td>
+        <div align="center"><font size="4.5" style="font-family:SimSun;font-weight:bold">Phishing website deteciton prototype system of the MFPD approach </font></div>
+        <!-- <div align="center"><font size="0.5" style="font-weight:bold">Phishing Website Detection System For</font></div>
+        <div align="center"><font size="0.5" style="font-weight:bold">Dual-Structural Network</font></div> -->
+        <!--<span>Phishing website deteciton system for dual-structured networks</span>-->
+      </td>
+    </tr>
+  </table>
+
+  <table border="0" align="center" cellspacing="10" width="500">
+        <div style="text-align: center;">
+    <form action="/" method="post">
+        <input name="url" placeholder="url" value="{{ url }}" style="width:440px; height:40px;">
+        <button type="submit" style="width:80px; height:40px;">Check</button><br>
+    </form>
+  </div>
+
+    <tr>
+      <td>
+        {% if res %}
+          <div>
+            <font size="4.5" style="font-family:SimSun;font-weight:bold">The website is:</font>
+            <font size="5.5" color="red" style="font-family:SimSun;font-weight:bold">{{res}}</font>
+          </div>
+        {% endif %}
+      </td>
+      <td align="left">
+       <!-- <div><font size="4.5" style="font-family:SimSun;font-weight:bold">UCL安全能级信息展示如下：</font></div> -->
+      </td>
+    </tr>
+
+    <tr>
+      <td align="center">
+       <!--  <div><font size="4.5" style="font-family:SimSun;font-weight:bold">URL基本信息</font></div> -->
+      </td>
+    </tr>
+    <br>
+    <tr>
+      <!-- <td align="left">域名:</td> -->
+      <td align="right">{% if domain %} {{ domain }}{% endif %}</td>
+    </tr>
+    <tr>
+       <!--  <td align="left">注册时间:</td> -->
+        <td align="right">{% if rt %} {{ rt }}{% endif %}</td>
+    </tr>
+    <tr>
+     <!--  <td align="left">alexa排名:</td> -->
+      <td align="right">{% if alexa %} {{ alexa }}{% endif %}</td>
+    </tr>
+
+
+
+    <tr>
+      <td align="center">
+        <div><font size="4.5" style="font-family:SimSun;font-weight:bold">Detection situation</font></div>
+      </td>
+      <td></td>
+    </tr>
+   <tr>
+      <td align="left">Blacklist:</td>
+      <td align="right" style="color:red">{% if black %}{{ black }}{% endif %}</td>
+    </tr>
+    <tr>
+      <td align="left">Whitelist:</td>
+      <td align="right" style="color:red">{% if white %}{{ white }}{% endif %}</td>
+    </tr>
+    {% if cl %}
+    <tr>
+      <td align="left">CNN-LSTM:</td>
+      <td align="right" style="color:red">{{cl}}</td>
+    </tr>
+    {% endif %}
+    {% if yz %}
+    <tr>
+      <td align="left">Threshold:</td>
+      <td align="right" style="color:red">{{yz}}</td>
+    </tr>
+    {% endif %}
+    {% if access %}
+    <tr>
+      <td align="left">accessible:</td>
+      <td align="right" style="color:red">{{access}}</td>
+    </tr>
+    {% endif %}
+    {% if md %}
+    <tr>
+      <td align="left">Multidimensional Features:</td>
+      <td align="right" style="color:red">{{md}}</td>
+    </tr>
+    {% endif %}
+</table>
+</body>
+</html>
