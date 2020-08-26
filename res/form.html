@@ -1,102 +1,207 @@
 <html>
+
 <head>
-  <title>Phishing website deteciton prototype system of the MFPD approach</title>
+  <title>面向双结构网络的钓鱼网站检查系统</title>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+    }
 
+    .header-ch {
+      width: 100vw;
+      margin-top: 40px;
+      text-align: center;
+      /* font-family: SimSun; */
+      font-weight: bold;
+      font-size: 32px;
+      color: seagreen;
+    }
+
+    .header-en {
+      width: 100vw;
+      text-align: center;
+      /* font-family: SimSun; */
+      font-weight: bold;
+      font-size: 16px;
+      color: seagreen;
+    }
+
+    .header-company {
+      margin-top: 5px;
+      color: turquoise;
+    }
+
+    .search-form-box {
+      margin-top: 80px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+    }
+
+    .search-form-input {
+      width: 30vw;
+      height: 40px;
+      border: 2px solid gray;
+      border-right: none;
+      outline: none;
+      box-sizing: border-box;
+      padding: 0 5px;
+      font-size: 14px;
+    }
+
+    .search-form-input:focus {
+      border: 2px solid seagreen;
+      border-right: none;
+    }
+
+    .search-form-btn {
+      width: 100px;
+      height: 40px;
+      border: none;
+      background-color: gray;
+      color: seashell;
+      font-size: 16px;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .search-form-btn:hover {
+      background-color: seagreen;
+    }
+
+    .center-layout {
+      width: calc(30vw + 100px);
+      margin: 0 auto;
+    }
+
+    .detect-result {
+      margin-top: 40px;
+      height: 35px;
+      line-height: 35px;
+    }
+
+    .warn-icon {
+      /* vertical-align: middle; */
+    }
+
+    .warn-color {
+      color: red;
+      font-weight: bolder;
+    }
+
+    .normal-color {
+      color: seagreen;
+      font-weight: bolder;
+    }
+
+    .result-title {
+      width: calc(30vw + 100px);
+      margin: 20px auto 0;
+      font-weight: bolder;
+      font-size: 16px;
+    }
+
+    .tiny-title {
+      width: calc(30vw + 100px);
+      margin: 10px auto;
+      font-size: 14px;
+    }
+
+    table,
+    tr,
+    td {
+      width: calc(30vw + 100px);
+      margin: 5px auto;
+      border: 1px solid lightgrey;
+      border-collapse: collapse;
+      box-sizing: border-box;
+    }
+
+    td {
+      padding: 5px 10px;
+      box-sizing: border-box;
+      font-size: 13px;
+    }
+
+    td:nth-child(1) {
+      width: 200px;
+    }
+  </style>
 </head>
+
 <body>
-  <table border="0" align="center" cellspacing="20" width="500">
-    <tr>
-     <!-- <td><img src="{{ url_for('static', filename='seu.bmp') }}" width="65" height="65"/></td> -->
-      <td>
-        <div align="center"><font size="4.5" style="font-family:SimSun;font-weight:bold">Phishing website deteciton prototype system of the MFPD approach </font></div>
-        <!-- <div align="center"><font size="0.5" style="font-weight:bold">Phishing Website Detection System For</font></div>
-        <div align="center"><font size="0.5" style="font-weight:bold">Dual-Structural Network</font></div> -->
-        <!--<span>Phishing website deteciton system for dual-structured networks</span>-->
-      </td>
-    </tr>
-  </table>
-
-  <table border="0" align="center" cellspacing="10" width="500">
-        <div style="text-align: center;">
-    <form action="/" method="post">
-        <input name="url" placeholder="url" value="{{ url }}" style="width:440px; height:40px;">
-        <button type="submit" style="width:80px; height:40px;">Check</button><br>
-    </form>
+  <div class="header-ch">面向双结构网络的钓鱼网站检测软件</div>
+  <div class="header-en">Phishing Website Detection Software For Dual-Structural Network</div>
+  <div class="header-ch header-company">南京优慧信安科技有限公司</div>
+  <form class="search-form-box" action="/" method="post">
+    <input class="search-form-input" name="url" placeholder="请输入url" value="{{ url }}">
+    <button class="search-form-btn" type="submit">检测一下</button><br>
+  </form>
+  {% if res %}
+  <div class="center-layout detect-result">该网站为
+    {% if res=="钓鱼网站!" %}
+    <span class="warn-color">{{res}} <img class="warn-icon" src="../static/warn.png" width="30" height="30" />
+      请谨慎访问</span>
+    {% else %}
+    <span class="normal-color">{{res}} <img class="warn-icon" src="../static/normal.png" width="30" height="30" />
+      可正常访问</span>
+    {% endif %}
   </div>
-
+  {% endif %}
+  <div class="result-title">URL钓鱼网站检测信息如下：</div>
+  <div class="tiny-title">URL基本信息</div>
+  <table class="result-table">
     <tr>
-      <td>
-        {% if res %}
-          <div>
-            <font size="4.5" style="font-family:SimSun;font-weight:bold">The website is:</font>
-            <font size="5.5" color="red" style="font-family:SimSun;font-weight:bold">{{res}}</font>
-          </div>
-        {% endif %}
-      </td>
-      <td align="left">
-       <!-- <div><font size="4.5" style="font-family:SimSun;font-weight:bold">UCL安全能级信息展示如下：</font></div> -->
-      </td>
-    </tr>
-
-    <tr>
-      <td align="center">
-       <!--  <div><font size="4.5" style="font-family:SimSun;font-weight:bold">URL基本信息</font></div> -->
-      </td>
-    </tr>
-    <br>
-    <tr>
-      <!-- <td align="left">域名:</td> -->
+      <td>域名</td>
       <td align="right">{% if domain %} {{ domain }}{% endif %}</td>
     </tr>
     <tr>
-       <!--  <td align="left">注册时间:</td> -->
-        <td align="right">{% if rt %} {{ rt }}{% endif %}</td>
+      <td>注册时间</td>
+      <td align="right">{% if rt %} {{ rt }}{% endif %}</td>
     </tr>
     <tr>
-     <!--  <td align="left">alexa排名:</td> -->
+      <td>alexa排名</td>
       <td align="right">{% if alexa %} {{ alexa }}{% endif %}</td>
     </tr>
-
-
-
+  </table>
+  <div class="tiny-title">检测情况</div>
+  <table class="result-table">
     <tr>
-      <td align="center">
-        <div><font size="4.5" style="font-family:SimSun;font-weight:bold">Detection situation</font></div>
-      </td>
-      <td></td>
-    </tr>
-   <tr>
-      <td align="left">Blacklist:</td>
+      <td>黑名单过滤结果</td>
       <td align="right" style="color:red">{% if black %}{{ black }}{% endif %}</td>
     </tr>
     <tr>
-      <td align="left">Whitelist:</td>
+      <td>白名单过滤结果</td>
       <td align="right" style="color:red">{% if white %}{{ white }}{% endif %}</td>
     </tr>
     {% if cl %}
     <tr>
-      <td align="left">CNN-LSTM:</td>
+      <td>CNN-LSTM-PUDA检测结果</td>
       <td align="right" style="color:red">{{cl}}</td>
     </tr>
     {% endif %}
     {% if yz %}
     <tr>
-      <td align="left">Threshold:</td>
+      <td>Threshold</td>
       <td align="right" style="color:red">{{yz}}</td>
     </tr>
     {% endif %}
     {% if access %}
     <tr>
-      <td align="left">accessible:</td>
+      <td>是否可访问</td>
       <td align="right" style="color:red">{{access}}</td>
     </tr>
     {% endif %}
     {% if md %}
     <tr>
-      <td align="left">Multidimensional Features:</td>
+      <td>MFFCDUF检测结果</td>
       <td align="right" style="color:red">{{md}}</td>
     </tr>
     {% endif %}
-</table>
+  </table>
+
 </body>
+
 </html>

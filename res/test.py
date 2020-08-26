@@ -2,17 +2,15 @@
 from flask import Flask
 from flask import request
 from flask import render_template, jsonify
-import os
 import requests
 
 #from miaoxuefeng.check import check, check2
-from check  import check, check2
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
-app = Flask(__name__)
+from check import check, check2
+app = Flask(__name__,template_folder="templates/build",static_folder="templates/build/static",static_url_path="/templates/build/static")
 
 @app.route('/', methods=['GET'])
 def signin_form():
-    return render_template('form.html')
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def signin():
@@ -26,46 +24,46 @@ def signin():
         res = mes['cnn_lstm']
 
     if res == 0:
-        res = u"Legitimate!"
+        res = u"正常网站!"
     else:
-        res = u"Phishing!"
+        res = u"钓鱼网站!"
 
     if mes['blacks'] != "":
-        res = u"Phishing!"
+        res = u"钓鱼网站!"
     if mes['whites'] != "":
-        res = u"Legitimate!"
+        res = u"正常网站!"
 
     if mes['alexa'] == "":
         mes['alexa'] = "None"
     if mes['blacks'] == "":
-        mes['blacks'] = u"Not match"
+        mes['blacks'] = u"未命中"
     else:
-        mes['blacks'] = u"Phishing"
+        mes['blacks'] = u"钓鱼网站"
 
     if mes['whites'] == "":
-        mes['whites'] = u"Not match "
+        mes['whites'] = u"未命中"
     else:
-        mes['whites'] = u"Legitimate"
+        mes['whites'] = u"正常网站"
 
     if mes['cnn_lstm'] == 1:
-        mes['cnn_lstm'] = u"Phishing"
+        mes['cnn_lstm'] = u"钓鱼网站"
     elif mes['cnn_lstm'] == 0:
-        mes['cnn_lstm'] = u"Legitimate"
+        mes['cnn_lstm'] = u"正常网站"
 
     if mes['access'] == 1:
-        mes['access'] = u"Yes"
+        mes['access'] = u"可访问"
     else:
-        mes['access'] = u"No"
+        mes['access'] = u"不可访问"
 
     if mes['mffcduf'] == 1:
-        mes['mffcduf'] = u"Phishing"
+        mes['mffcduf'] = u"钓鱼网站"
     elif mes['mffcduf'] == 0:
-        mes['mffcduf'] = u"Legitimate"
+        mes['mffcduf'] = u"正常网站"
 
-    return render_template('form.html', message=mes,
+    return render_template('index.html', message=mes,
         domain=mes['domain'], rt=mes["register_time"],alexa=mes['alexa'],
         et=mes['expiration_date'], ns=mes['name_servers'],
-        black=mes['blacks'], white=mes['whites'], cl=mes['cnn_lstm'],
+        black=mes['blacks'], white=mes['whites'], cl=mes['cnn_lstm'], cl_scor=mes["cnn_lstm_score"],
         yz=mes['yz'], md=mes['mffcduf'], access=mes['access'], res=res, url=url)
 
 """

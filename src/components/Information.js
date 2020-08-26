@@ -1,5 +1,5 @@
 import { Descriptions } from 'antd';
-
+import React, { Component } from 'react';
 class InformationDemo extends Component {
     state = {}
     render() {

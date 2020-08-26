@@ -1,0 +1,145 @@
+<html>
+
+<head>
+  <title>面向双结构网络的钓鱼网站检查系统</title>
+  <link rel="stylesheet" href="../src/styles//BAndWList.css">
+</head>
+
+<body>
+  <div class="header-ch">面向双结构网络的钓鱼网站检测系统</div>
+  <div class="header-en">Phishing Website Detection System For Dual-Structural Network</div>
+  <button id="refresh-data">刷新数据</button>
+  <!-- <form class="search-form-box" action="/" method="post">
+    <input class="search-form-input" name="url" placeholder="请输入url" value="{{ url }}">
+    <button class="search-form-btn" type="submit">检测一下</button><br>
+  </form> -->
+  <div class="list-wrapper">
+    <ul id="blacks">
+      <div class="list-header">黑名单</div>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul id="whites">
+      <div class="list-header">白名单</div>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script src="./blacks.js"></script>
+  <script src="./whites.js"></script>
+  <script>
+    function random() {
+      return Math.floor(Math.random() * 33824) // 一个长度是 33884, 一个长度是 100000
+    }
+    function refresh() {
+      for (let i = 1; i < 51; ++i) {
+        blackUlTag.children[i].innerHTML = blacks[random()].domain
+        whiteUlTag.children[i].innerHTML = whites[random()].domain
+      }
+    }
+    const blackUlTag = document.getElementById('blacks')
+    const whiteUlTag = document.getElementById('whites')
+    const refreshButton = document.getElementById('refresh-data')
+    refreshButton.addEventListener('click', () => refresh())
+    refresh()
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+.header-ch {
+    width: 100vw;
+    margin-top: 40px;
+    text-align: center;
+    /* font-family: SimSun; */
+    font-weight: bold;
+    font-size: 32px;
+    color: seagreen;
+}
+
+.header-en {
+    width: 100vw;
+    text-align: center;
+    /* font-family: SimSun; */
+    font-weight: bold;
+    font-size: 16px;
+    color: seagreen;
+}
+
+.search-form-box {
+    margin-top: 80px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.search-form-input {
+    width: 30vw;
+    height: 40px;
+    border: 2px solid gray;
+    border-right: none;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0 5px;
+    font-size: 14px;
+}
+
+.search-form-input:focus {
+    border: 2px solid seagreen;
+    border-right: none;
+}
+
+.search-form-btn {
+    width: 100px;
+    height: 40px;
+    border: none;
+    background-color: gray;
+    color: seashell;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+.search-form-btn:hover {
+    background-color: seagreen;
+}
+
+.center-layout {
+    width: calc(30vw + 100px);
+    margin: 0 auto;
+}
+
+.detect-result {
+    margin-top: 40px;
+}
+
+.warn-color {
+    color: red;
+}
+
+.normal-color {
+    color: seagreen;
+}
+
+.result-title {
+    width: calc(30vw + 100px);
+    margin: 20px auto 0;
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.tiny-title {
+    width: calc(30vw + 100px);
+    margin: 10px auto;
+    font-size: 14px;
+}
+
+table,
+tr,
+td {
+    width: calc(30vw + 100px);
+    margin: 5px auto;
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+td {
+    padding: 5px 10px;
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+td:nth-child(1) {
+    width: 200px;
+}
+
+.list-header {
+    font-size: 24px;
+    font-weight: bold;
+}
