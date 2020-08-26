@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// eslint-disable-next-line
 import { Form, Input, InputNumber, Button } from 'antd';
 
 const layout = {
@@ -12,7 +13,7 @@ class Setting extends Component {
         };
         const onClick = values => {
             alert("提交成功");
-            
+
         }
         return (
             <Form {...layout} name="nest-messages" onFinish={onFinish}>
